@@ -1,20 +1,18 @@
 body{
-    margin: 0;
+    margin: 1.1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: auto;
     background-color: #e4dfdf;
 }
 #calculator{
     font-size: Arial, sans-serif;
     background-color: #201f1f;
     border-radius: 15px;
-    max-width: 500px;
+    width: 32rem;
     overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+   
 }
 #display{
     width: 100%;
