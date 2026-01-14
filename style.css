@@ -1,69 +1,202 @@
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background-color: #e4dfdf;
+    padding: 20px;
 }
 
 #calculator {
-    font-family: Arial, sans-serif;
-    background-color: #201f1f;
-    border-radius: 1rem;
     width: 100%;
-    max-width: 24rem;
+    max-width: 400px;
+    background-color: #201f1f;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+#display-container {
+    background-color: #201f1f;
+    padding: 30px 24px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.expression {
+    color: #858585;
+    font-size: 1.2rem;
+    text-align: right;
+    min-height: 30px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
 }
 
 #display {
     width: 100%;
-    padding: 1.5rem;
-    font-size: 2rem;
-    text-align: left;
+    background: transparent;
     border: none;
-    background-color: #383232;
-    color: white;
-    box-sizing: border-box;
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 300;
+    text-align: right;
+    outline: none;
+    padding: 0;
 }
 
-#keys {
+#mode-switcher {
+    display: flex;
+    background-color: #2d3038;
+    border-bottom: 1px solid #3d4149;
+}
+
+.tab {
+    flex: 1;
+    padding: 16px;
+    background: transparent;
+    border: none;
+    color: #858585;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tab.active {
+    color: #4FC3F7;
+    border-bottom: 2px solid #4FC3F7;
+}
+
+.tab:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#button-panel {
+    background-color: #201f1f;
+    padding: 16px;
+}
+
+.panel {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    padding: 1.5rem;
+    gap: 12px;
 }
+
+.hidden { display: none; }
 
 button {
-    width: 100%;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
+    height: 72px;
     border: none;
-    background-color: rgb(56, 52, 52);
-    color: white;
+    border-radius: 16px;
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 400;
     cursor: pointer;
-    transition: background 0.2s;
-}
-
-button:hover {
-    background-color: rgb(85, 77, 77);
+    transition: all 0.2s;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 button:active {
-    background-color: rgb(128, 123, 123);
+    transform: scale(0.95);
+}
+
+.number-btn {
+    background-color: #2E3239;
+    color: #E8E8E8;
+}
+
+.number-btn:hover {
+    background-color: #3a3f47;
+}
+
+.function-btn {
+    background-color: #005A82;
+    color: #4FC3F7;
+    font-size: 1.3rem;
+}
+
+.function-btn:hover {
+    background-color: #006b96;
 }
 
 .operator-btn {
-    background-color: orange;
+    background-color: #1991C1;
+    color: #ffffff;
+    font-size: 1.8rem;
 }
 
 .operator-btn:hover {
-    background-color: rgb(243, 162, 12);
+    background-color: #1fa3d6;
 }
 
-.operator-btn:active {
-    background-color: rgb(235, 187, 99);
+.equals-btn {
+    background-color: #1991C1;
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+.equals-btn:hover {
+    background-color: #1fa3d6;
+}
+
+.sci-btn {
+    background-color: #005A82;
+    color: #4FC3F7;
+    font-size: 1.1rem;
+    height: 60px;
+}
+
+.sci-btn:hover {
+    background-color: #006b96;
+}
+
+.back-btn {
+    background-color: #1991C1 !important;
+    color: #ffffff !important;
+}
+
+.toggle-sci-btn {
+    background-color: #4a4a4a;
+    color: #ffffff;
+}
+
+/* Sci columns behavior */
+.sci-only { display: none; }
+
+#basic-panel.sci-on {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+#basic-panel.sci-on .sci-only { display: flex; }
+
+#basic-panel.sci-on .sci-left { grid-column: 1; }
+#basic-panel.sci-on .sci-right { grid-column: 6; }
+
+/* Responsive */
+@media (max-width: 480px) {
+    #calculator {
+        max-width: 100%;
+        border-radius: 0;
+    }
+    
+    #display {
+        font-size: 2.5rem;
+    }
+    
+    button {
+        height: 64px;
+    }
 }
